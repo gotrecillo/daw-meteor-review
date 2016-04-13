@@ -6,5 +6,8 @@
   },
   "dependencies": {
     "meteor-node-stubs": "~0.2.0"
+  },
+  "devDependencies": {
+    "eslint-plugin-jsx-a11y": "^0.6.2"
   }
 }
