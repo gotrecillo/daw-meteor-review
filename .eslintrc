@@ -1,0 +1,13 @@
+{
+  "plugins": [
+    "meteor"
+  ],
+  "extends": [
+    "airbnb/base",
+    "plugin:meteor/recommended"
+  ],
+  "rules": {
+    "array-callback-return": 0,
+    "func-names": 0,
+  }
+}
