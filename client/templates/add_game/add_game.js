@@ -1,6 +1,8 @@
 import { GamesImages, Games } from '../../../lib/collections';
 import { Template } from 'meteor/templating';
 import { FS } from 'meteor/cfs:base-package';
+import { Router } from 'meteor/iron:router';
+import { FlashMessages } from 'meteor/mrt:flash-messages';
 
 Template.addGame.events({
   'submit .add_game': (event) => {
@@ -10,27 +12,23 @@ Template.addGame.events({
     const description = event.target.description.value;
     const isFeatured = event.target.is_featured.value;
     const imageFile = $('#gameImage').get(0).files[0];
-
-    let image = 'img/noimage.png';
+    const game = { name, category, description, isFeatured, createdAt: new Date() };
+    let image = '/img/noimage.png';
 
     if (imageFile) {
       const fsImage = new FS.File(imageFile);
-
       GamesImages.insert(fsImage, (err, result) => {
         if (!err) {
           image = `/cfs/files/GamesImages/${result._id}`;
+          Games.insert(Object.assign({}, game, { image }));
         }
       });
+    } else {
+      Games.insert(Object.assign({}, game, { image }));
     }
 
-    Games.insert({
-      name,
-      category,
-      description,
-      isFeatured,
-      image,
-      createdAt: new Date(),
-    });
+    FlashMessages.sendSuccess('Game Added');
+    Router.go('/');
   },
 
 });

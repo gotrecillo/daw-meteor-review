@@ -27,3 +27,5 @@ cfs:gridfs
 momentjs:moment
 accounts-ui
 accounts-password
+stevezhu:lodash
+zimme:active-route
