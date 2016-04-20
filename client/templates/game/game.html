@@ -19,15 +19,14 @@
     </div>
   </div>
   <div clas="row"> 
-    <hr>
     <h4>Reviews & Ratings</h4>
     {{#each reviews}}
-    <div class="row">
-      <div class="col-md-10">
-        <img src="/img/stars/{{rating}}.png" alt="{{rating}} stars"> {{review}}
+    <div class="row review-container">
+      <div class="col-md-3">
+        <img class="stars" src="/img/stars/{{rating}}.png" alt="{{rating}} stars">
       </div>
-      <div class="col-md-2">
-        date
+      <div class="col-md-9">
+         {{review}}
       </div>
     </div>
     {{/each}}
