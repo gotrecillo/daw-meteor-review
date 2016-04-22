@@ -4,6 +4,11 @@ import { FS } from 'meteor/cfs:base-package';
 import { Router } from 'meteor/iron:router';
 import { FlashMessages } from 'meteor/mrt:flash-messages';
 
+function showAddGameFlash() {
+  FlashMessages.sendSuccess('Game Added');
+  Router.go('/');
+}
+
 Template.addGame.events({
   'submit .add_game': (event) => {
     event.preventDefault();
@@ -21,14 +26,14 @@ Template.addGame.events({
         if (!err) {
           image = `/cfs/files/GamesImages/${result._id}`;
           Games.insert(Object.assign({}, game, { image }));
+          showAddGameFlash();
         }
       });
     } else {
       Games.insert(Object.assign({}, game, { image }));
+      showAddGameFlash();
     }
-
-    FlashMessages.sendSuccess('Game Added');
-    Router.go('/');
   },
 
 });
+
