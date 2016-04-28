@@ -1,6 +1,7 @@
 import { Template } from 'meteor/templating';
 import { lodash } from 'meteor/stevezhu:lodash';
 import { Spacebars } from 'meteor/spacebars';
+import { moment } from 'meteor/momentjs:moment';
 
 const { truncate } = lodash;
 
@@ -20,3 +21,5 @@ Template.registerHelper('getAvg', (reviews) => {
 });
 
 Template.registerHelper('getReviewsTotal', total => (total > 0 ? total : 0));
+
+Template.registerHelper('formatDate', date => moment(date).format('MM-DD-YYYY'));

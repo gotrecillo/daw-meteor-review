@@ -10,7 +10,9 @@
         <p>Average Rating:<img class="stars" src="/img/stars/{{getAvg reviews}}.png" alt="{{getAvg reviews}} stars">({{getReviewsTotal reviews.length}})</p>
         <p>{{truncateText description 150}}</p>
         <a href="{{pathFor 'game'}}" class="btn btn-default">Read Review</a>
-        <a href="{{pathFor 'newReview'}}" class="btn btn-primary">Add Review</a>
+        {{#if currentUser}}
+          <a href="{{pathFor 'newReview'}}" class="btn btn-primary">Add Review</a>
+        {{/if}}
       </div>
     </div>
   {{/each}}

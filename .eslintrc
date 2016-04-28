@@ -14,5 +14,6 @@
   "rules": {
     "array-callback-return": 0,
     "func-names": 0,
+    "meteor/audit-argument-checks": 0
   }
 }

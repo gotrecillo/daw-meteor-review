@@ -1,4 +1,4 @@
-import { Games } from '../../../lib/collections';
+import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { Router } from 'meteor/iron:router';
 import { FlashMessages } from 'meteor/mrt:flash-messages';
@@ -10,16 +10,7 @@ Template.newReview.events({
     const review = event.target.review.value;
     const id = event.target.id.value;
 
-    Games.update({
-      _id: id,
-    }, {
-      $push: {
-        reviews: {
-          rating,
-          review,
-        },
-      },
-    });
+    Meteor.call('addReview', id, rating, review);
 
     FlashMessages.sendSuccess('Review Added');
     Router.go('/');

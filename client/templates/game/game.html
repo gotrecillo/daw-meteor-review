@@ -10,14 +10,15 @@
       <p>{{description}}</p>
     </div>
   </div>
-
-  <div class="row">
-    <div class="col-md-12">
-      <div class="text-right">
-        <a href="/newReview/{{_id}}" class="btn btn-success">Leave a Review</a>
+  {{#if currentUser}}
+    <div class="row">
+      <div class="col-md-12">
+        <div class="text-right">
+          <a href="/newReview/{{_id}}" class="btn btn-success">Leave a Review</a>
+        </div>
       </div>
     </div>
-  </div>
+  {{/if}}
   <div clas="row"> 
     <h4>Reviews & Ratings</h4>
     {{#each reviews}}
@@ -25,8 +26,11 @@
       <div class="col-md-3">
         <img class="stars" src="/img/stars/{{rating}}.png" alt="{{rating}} stars">
       </div>
-      <div class="col-md-9">
+      <div class="col-md-6">
          {{review}}
+      </div>
+      <div class="col-md-3">
+        {{formatDate created_at}}
       </div>
     </div>
     {{/each}}

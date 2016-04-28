@@ -1,6 +1,7 @@
-import { GamesImages, Games } from '../../../lib/collections';
-import { Template } from 'meteor/templating';
+import { Meteor } from 'meteor/meteor';
+import { GamesImages } from '../../../lib/collections';
 import { FS } from 'meteor/cfs:base-package';
+import { Template } from 'meteor/templating';
 import { Router } from 'meteor/iron:router';
 import { FlashMessages } from 'meteor/mrt:flash-messages';
 
@@ -25,13 +26,15 @@ Template.addGame.events({
       GamesImages.insert(fsImage, (err, result) => {
         if (!err) {
           image = `/cfs/files/GamesImages/${result._id}`;
-          Games.insert(Object.assign({}, game, { image }));
-          showAddGameFlash();
+          Meteor.call('addGame', Object.assign({}, game, { image }), () => {
+            showAddGameFlash();
+          });
         }
       });
     } else {
-      Games.insert(Object.assign({}, game, { image }));
-      showAddGameFlash();
+      Meteor.call('addGame', Object.assign({}, game, { image }), () => {
+        showAddGameFlash();
+      });
     }
   },
 
