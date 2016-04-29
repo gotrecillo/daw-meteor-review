@@ -7,7 +7,9 @@ import { FlashMessages } from 'meteor/mrt:flash-messages';
 
 function showAddGameFlash() {
   FlashMessages.sendSuccess('Game Added');
-  Router.go('/');
+  setTimeout(() => {
+    Router.go('/');
+  }, 100);
 }
 
 Template.addGame.events({
